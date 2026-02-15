@@ -1,0 +1,46 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-15T18:11:09.848Z",
+  "summary": "The diff mounts YogaMorphBackground in the shared SiteLayout and adds CSS layering for site background/yoga layers/grain plus a reduced-motion-aware crossfade implementation. It also adds a dev-only asset diagnostic hook and a QA checklist. However, the diff does not provide evidence that the required static assets were added/verified in `frontend/public/assets/generated`, nor that the new diagnostic hook is actually invoked anywhere.",
+  "missing_requirements": [
+    {
+      "id": "REQ-27",
+      "requirement": "Ensure the yoga pose image assets and noise map exist under `frontend/public/assets/generated` and are correctly served (no 404s), adding missing files or correcting filenames as needed.",
+      "reason": "The diff updates code to reference specific `/assets/generated/...` URLs and adds dev warnings, but there are no changes shown under `frontend/public/assets/generated` to prove the referenced images/noise map exist or were added/renamed to match these exact filenames.",
+      "evidence": [
+        "frontend/src/components/layout/YogaMorphBackground.tsx",
+        "frontend/src/hooks/useYogaBackgroundDiagnostics.ts"
+      ]
+    },
+    {
+      "id": "REQ-27",
+      "requirement": "Prevent silent failures by validating asset availability during development/QA.",
+      "reason": "A diagnostic hook (`useYogaBackgroundDiagnostics`) was added, but the diff summary does not show it being imported/used anywhere, so it may never run.",
+      "evidence": [
+        "frontend/src/hooks/useYogaBackgroundDiagnostics.ts",
+        "frontend/src/components/layout/SiteLayout.tsx"
+      ]
+    },
+    {
+      "id": "REQ-29",
+      "requirement": "Add a quick regression QA pass focused on the background, including checking for no production-breaking console errors and verifying background/animation across navigation flows.",
+      "reason": "A QA checklist doc is added, but the diff does not show any runnable QA automation or integration (only documentation). If the intent was purely a manual QA checklist, this is satisfied; if actual verification steps were expected in code/CI, there is no evidence.",
+      "evidence": [
+        "frontend/src/qa/background-regression-checklist.md"
+      ]
+    }
+  ],
+  "hallucinated_features": [],
+  "confidence": 0.62,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/src/components/layout/SiteLayout.tsx",
+    "frontend/src/components/layout/YogaMorphBackground.tsx",
+    "frontend/src/hooks/useYogaBackgroundDiagnostics.ts",
+    "frontend/src/index.css",
+    "frontend/src/pages/CheckoutPage.tsx",
+    "frontend/src/qa/background-regression-checklist.md",
+    "project_state.json"
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "kind": "build_request",
+  "title": "Fix missing yoga morphing background images and animation regression",
+  "priority": "high",
+  "requirements": [
+    {
+      "id": "REQ-25",
+      "text": "Restore the full-page yoga pose background imagery and morphing animation so it appears on all routes (Home, Catalog, Product Detail, Cart, Checkout, Auth, and 404) as it did prior to the last deployment.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4",
+          "msg-6"
+        ],
+        "quotes": [
+          "There is no image in background and animation",
+          "Yes after the last development"
+        ]
+      },
+      "acceptanceCriteria": [
+        "When visiting each route, a full-viewport yoga background is visible behind the page content.",
+        "The background transitions (crossfades/morphs) between multiple yoga pose images over time when the user does not have reduced motion enabled.",
+        "Page content (header, main content, footer) remains readable and interactive; the background layers do not block clicks/scrolling.",
+        "No route relies on backend image serving; background images are loaded as static assets from the frontend."
+      ]
+    },
+    {
+      "id": "REQ-26",
+      "text": "Fix the regression root cause by verifying and correcting the background layering implementation (layout composition, CSS stacking context/z-index, and asset URLs) so the yoga background is not hidden by other fixed layers (site background, grain overlay, checkout-specific background) after deployment.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4",
+          "msg-6"
+        ],
+        "quotes": [
+          "There is no image in background and animation",
+          "Both"
+        ]
+      },
+      "acceptanceCriteria": [
+        "YogaMorphBackground remains mounted site-wide via the shared layout and is not conditionally removed on any route.",
+        "CSS layering ensures: yoga background is behind content but above the base site background image; grain/scrim overlays do not fully obscure the yoga pose images.",
+        "The checkout page retains its checkout-specific background styling without removing the yoga morph layer unless explicitly intended; if checkout intentionally differs, it must still display at least the expected static yoga background.",
+        "There are no console errors related to the yoga background component (e.g., runtime exceptions that stop rendering)."
+      ]
+    },
+    {
+      "id": "REQ-27",
+      "text": "Ensure the yoga pose image assets and noise map referenced by the morphing background exist and are correctly served from `frontend/public/assets/generated`, and prevent silent failures by validating asset availability during development/QA.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4",
+          "msg-6"
+        ],
+        "quotes": [
+          "There is no image in background and animation",
+          "Both"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The following asset URLs load successfully (no 404s) in the browser network panel: `/assets/generated/yoga-pose-01.dim_2400x1600.png` through `/assets/generated/yoga-pose-06.dim_2400x1600.png`, and `/assets/generated/morph-noise-map.dim_1024x1024.png`.",
+        "If any referenced asset is missing, it is added under `frontend/public/assets/generated` or the code is updated to reference the correct existing filenames (without routing through the backend).",
+        "The background remains visible after a production build/preview deploy (not only in local dev)."
+      ]
+    },
+    {
+      "id": "REQ-28",
+      "text": "Preserve accessibility behavior: when the user has enabled `prefers-reduced-motion`, disable the morph animation but still display a static yoga background image across all routes.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-5"
+        ],
+        "quotes": [
+          "Are you expecting a static background image, the animated morphing sequence, or both?"
+        ]
+      },
+      "acceptanceCriteria": [
+        "With reduced motion enabled at the OS/browser level, the yoga background shows a single static pose image (no crossfade/morph).",
+        "With reduced motion disabled, the morphing/crossfade animation is active.",
+        "No user-facing text changes are required for this fix."
+      ]
+    },
+    {
+      "id": "REQ-29",
+      "text": "Add a quick regression QA pass focused on the background: verify no production-breaking console errors on initial load and confirm the yoga background and animation appear consistently across the core navigation flows.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4",
+          "msg-6"
+        ],
+        "quotes": [
+          "There is no image in background and animation",
+          "Yes after the last development"
+        ]
+      },
+      "acceptanceCriteria": [
+        "No obvious console errors on initial load of the app.",
+        "Background visible on: Home → Catalog → Product Detail → Add to Cart → Cart → Checkout → Auth, and on an unknown URL (404).",
+        "Animation continues running for at least 30 seconds on a non-reduced-motion device without freezing or disappearing."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify files under `frontend/src/components/ui` (read-only shadcn components must be composed, not edited).",
+    "Do not modify immutable frontend hook paths listed in SYSTEM_CONTEXT (e.g., `frontend/src/hooks/useInternetIdentity.ts(x)`, `frontend/src/hooks/useActor.ts`, `frontend/src/main.tsx`).",
+    "Keep all user-facing text in English.",
+    "Do not serve images through the backend; use static assets under `frontend/public/assets/generated`.",
+    "Backend remains single-actor Motoko; no backend changes are required for this UI regression unless strictly necessary."
+  ],
+  "nonGoals": [
+    "Implementing real payment processing.",
+    "Adding new site sections or changing product/catalog functionality beyond what is necessary to restore the background regression.",
+    "Introducing new third-party libraries for animation beyond what is already in the project."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
+  }
+}

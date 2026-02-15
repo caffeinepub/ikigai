@@ -1,0 +1,119 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Restore site-wide yoga morphing background imagery, layering, and reduced-motion behavior",
+  "requirements": [
+    {
+      "id": "REQ-25",
+      "summary": "Restore full-viewport yoga pose background and morphing animation across all routes via the shared layout.",
+      "acceptanceCriteria": [
+        "When visiting each route, a full-viewport yoga background is visible behind the page content.",
+        "The background transitions (crossfades/morphs) between multiple yoga pose images over time when the user does not have reduced motion enabled.",
+        "Page content (header, main content, footer) remains readable and interactive; the background layers do not block clicks/scrolling.",
+        "No route relies on backend image serving; background images are loaded as static assets from the frontend."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/layout/YogaMorphBackground.tsx",
+          "operation": "modify",
+          "description": "Harden the morphing/crossfade behavior so it consistently renders: ensure image URL construction works in production builds (avoid absolute-root URL assumptions), preload pose images to prevent blank flashes, and ensure timers are correctly cleaned up (interval + timeout) to avoid animation stopping or throwing runtime errors."
+        },
+        {
+          "path": "frontend/src/components/layout/SiteLayout.tsx",
+          "operation": "modify",
+          "description": "Ensure the shared layout guarantees the yoga background is present on every route and that app content renders above it (e.g., add explicit stacking context/z-index wrappers for header/main/footer so the background never covers interactivity)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-26",
+      "summary": "Fix background regression root cause by correcting layout composition and CSS stacking/asset URL handling so the yoga background is not hidden by other fixed layers (site background, grain overlay, checkout background).",
+      "acceptanceCriteria": [
+        "YogaMorphBackground remains mounted site-wide via the shared layout and is not conditionally removed on any route.",
+        "CSS layering ensures: yoga background is behind content but above the base site background image; grain/scrim overlays do not fully obscure the yoga pose images.",
+        "The checkout page retains its checkout-specific background styling without removing the yoga morph layer unless explicitly intended; if checkout intentionally differs, it must still display at least the expected static yoga background.",
+        "There are no console errors related to the yoga background component (e.g., runtime exceptions that stop rendering)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Correct the stacking order of all background layers (site base background, yoga morph background, grain overlay, checkout-specific background) to avoid negative z-index rendering issues and ensure content remains above overlays. Also update CSS asset URL references so they resolve correctly after production build/preview deploy (prefer base-relative paths rather than absolute root paths when appropriate)."
+        },
+        {
+          "path": "frontend/src/pages/CheckoutPage.tsx",
+          "operation": "modify",
+          "description": "Verify checkout background wrapper does not create a stacking context that hides the yoga morph layer; adjust the checkout container classes/structure only as needed to keep the checkout-specific styling while still showing the yoga layer behind the checkout content."
+        }
+      ]
+    },
+    {
+      "id": "REQ-27",
+      "summary": "Ensure yoga pose image assets and noise map are correctly referenced from frontend public assets and add dev/QA validation to prevent silent failures.",
+      "acceptanceCriteria": [
+        "The following asset URLs load successfully (no 404s) in the browser network panel: `/assets/generated/yoga-pose-01.dim_2400x1600.png` through `/assets/generated/yoga-pose-06.dim_2400x1600.png`, and `/assets/generated/morph-noise-map.dim_1024x1024.png`.",
+        "If any referenced asset is missing, it is added under `frontend/public/assets/generated` or the code is updated to reference the correct existing filenames (without routing through the backend).",
+        "The background remains visible after a production build/preview deploy (not only in local dev)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/layout/YogaMorphBackground.tsx",
+          "operation": "modify",
+          "description": "Centralize the yoga pose and noise-map asset references and ensure they match the exact generated filenames and are served from static assets: `frontend/public/assets/generated/yoga-pose-01.dim_2400x1600.png` … `frontend/public/assets/generated/yoga-pose-06.dim_2400x1600.png` and `frontend/public/assets/generated/morph-noise-map.dim_1024x1024.png`. Add non-fatal console warnings in development if any image fails to load to prevent silent rendering failures."
+        },
+        {
+          "path": "frontend/src/hooks/useYogaBackgroundDiagnostics.ts",
+          "operation": "create",
+          "description": "Add a lightweight development-only diagnostic hook that preloads the yoga pose images and noise map (and logs clear console warnings if any are missing/unreachable) to catch 404s or mis-referenced filenames during QA."
+        },
+        {
+          "path": "frontend/src/components/layout/SiteLayout.tsx",
+          "operation": "modify",
+          "description": "Wire the new `useYogaBackgroundDiagnostics` hook into the shared layout in development mode so asset availability issues are surfaced early without affecting production behavior."
+        }
+      ]
+    },
+    {
+      "id": "REQ-28",
+      "summary": "Preserve accessibility: disable morph animation under prefers-reduced-motion while keeping a static yoga background across routes.",
+      "acceptanceCriteria": [
+        "With reduced motion enabled at the OS/browser level, the yoga background shows a single static pose image (no crossfade/morph).",
+        "With reduced motion disabled, the morphing/crossfade animation is active.",
+        "No user-facing text changes are required for this fix."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/layout/YogaMorphBackground.tsx",
+          "operation": "modify",
+          "description": "Ensure reduced-motion mode reliably renders a single static yoga pose image while fully disabling transitions/timers; handle runtime toggling of the preference without leaving the component in a partially-transitioning state."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Verify CSS reduced-motion rules correctly disable any background-layer animations/transitions while preserving the static yoga background visibility (do not hide the layers entirely)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-29",
+      "summary": "Add a quick regression QA pass checklist and dev-facing checks for the background to ensure no console errors and consistent behavior across core navigation flows.",
+      "acceptanceCriteria": [
+        "No obvious console errors on initial load of the app.",
+        "Background visible on: Home → Catalog → Product Detail → Add to Cart → Cart → Checkout → Auth, and on an unknown URL (404).",
+        "Animation continues running for at least 30 seconds on a non-reduced-motion device without freezing or disappearing."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/qa/background-regression-checklist.md",
+          "operation": "create",
+          "description": "Create a short manual QA checklist covering: (1) initial load console sanity, (2) verifying yoga background visibility on each core route including 404, (3) verifying animation runs for 30+ seconds when reduced motion is off, and (4) verifying reduced-motion shows a static background."
+        },
+        {
+          "path": "frontend/src/hooks/useYogaBackgroundDiagnostics.ts",
+          "operation": "modify",
+          "description": "Extend the dev-only diagnostics to log a single, clear message if any background assets fail to preload (including yoga poses + noise map), helping QA confirm there are no production-breaking console errors tied to the background."
+        }
+      ]
+    }
+  ]
+}

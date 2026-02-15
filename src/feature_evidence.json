@@ -1,0 +1,101 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-restore-the-full-page-yoga-pose-background-imagery-and-morphing-animation-so-it-appears-on-all-routes-home-catalog-product-detail-cart-checkout-auth-and-404-as-it-did-prior-to-the-last-deployment",
+      "featureTitle": "Restore the full-page yoga pose background imagery and morphing animation so it appears on all routes (Home, Catalog, Product Detail, Cart, Checkout, Auth, and 404) as it did prior to the last deployment.",
+      "files": [
+        "frontend/src/components/layout/SiteLayout.tsx",
+        "frontend/src/components/layout/YogaMorphBackground.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-25"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-fix-the-regression-root-cause-by-verifying-and-correcting-the-background-layering-implementation-layout-composition-css-stacking-context-z-index-and-asset-urls-so-the-yoga-background-is-not-hidden-by-other-fixed-layers-site-background-grain-overlay-checkout-specific-background-after-deployment",
+      "featureTitle": "Fix the regression root cause by verifying and correcting the background layering implementation (layout composition, CSS stacking context/z-index, and asset URLs) so the yoga background is not hidden by other fixed layers (site background, grain overlay, checkout-specific background) after deployment.",
+      "files": [
+        "frontend/src/index.css",
+        "frontend/src/pages/CheckoutPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-26"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-ensure-the-yoga-pose-image-assets-and-noise-map-referenced-by-the-morphing-background-exist-and-are-correctly-served-from-frontend-public-assets-generated-and-prevent-silent-failures-by-validating-asset-availability-during-development-qa",
+      "featureTitle": "Ensure the yoga pose image assets and noise map referenced by the morphing background exist and are correctly served from `frontend/public/assets/generated`, and prevent silent failures by validating asset availability during development/QA.",
+      "files": [
+        "frontend/src/components/layout/SiteLayout.tsx",
+        "frontend/src/components/layout/YogaMorphBackground.tsx",
+        "frontend/src/hooks/useYogaBackgroundDiagnostics.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-27"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-preserve-accessibility-behavior-when-the-user-has-enabled-prefers-reduced-motion-disable-the-morph-animation-but-still-display-a-static-yoga-background-image-across-all-routes",
+      "featureTitle": "Preserve accessibility behavior: when the user has enabled `prefers-reduced-motion`, disable the morph animation but still display a static yoga background image across all routes.",
+      "files": [
+        "frontend/src/components/layout/YogaMorphBackground.tsx",
+        "frontend/src/index.css"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-28"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-quick-regression-qa-pass-focused-on-the-background-verify-no-production-breaking-console-errors-on-initial-load-and-confirm-the-yoga-background-and-animation-appear-consistently-across-the-core-navigation-flows",
+      "featureTitle": "Add a quick regression QA pass focused on the background: verify no production-breaking console errors on initial load and confirm the yoga background and animation appear consistently across the core navigation flows.",
+      "files": [
+        "frontend/src/hooks/useYogaBackgroundDiagnostics.ts",
+        "frontend/src/qa/background-regression-checklist.md"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-29"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

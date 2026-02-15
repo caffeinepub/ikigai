@@ -1,0 +1,339 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 15,
+  "summary": "Expand the IKIGAI e-commerce site scope to include selectable payment methods at checkout and add full-page animated background imagery: yoga pose photos that morph smoothly between different poses on all pages.",
+  "architectural_notes": [
+    "Brand/site name: IKIGAI; tagline: “Build the Flow.”",
+    "Site aesthetic: minimal, premium, calm-performance; avoid aggressive gym vibe and avoid overly spiritual yoga tone.",
+    "Color + typography direction: off-white background, dark grey/black text, muted accent (olive/stone/beige), large spacing, clean type.",
+    "Use placeholder product data and placeholder images initially; focus on clarity, usability, and brand credibility.",
+    "Responsive-first/mobile-friendly layouts required.",
+    "Use Indian Rupees (₹/INR) for all displayed pricing.",
+    "Include support contact details and Instagram handle in global site content (e.g., footer).",
+    "Placeholder product data update: ensure each product uses a unique image asset (avoid reusing the same image within a category) and assign randomized placeholder prices in the ₹499–₹1499 range (INR) across all categories.",
+    "New scope: add a checkout payment step with selectable payment methods (integration requirements TBD).",
+    "Visual enhancement: introduce background images while preserving readability and the minimal premium calm-performance aesthetic."
+  ],
+  "known_issues": [
+    "Regression after last deployment: yoga pose background image layer and morphing animation no longer appear anywhere on the site (static + animated expected on all pages)."
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-create-a-cohesive-site-wide-visual-theme-for-the-ikigai-brand-with-a-minimal-premium-calm-performance-aesthetic-off-white-background-dark-gray-black-text-muted-accent-color-olive-green-stone-beige-generous-whitespace-clean-typography-and-consistent-button-input-card-styles-across-all-pages",
+      "title": "Create a cohesive site-wide visual theme for the IKIGAI brand with a minimal, premium, calm-performance aesthetic: off-white background, dark gray/black text, muted accent color (olive green / stone / beige), generous whitespace, clean typography, and consistent button/input/card styles across all pages.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-landing-page-homepage-with-1-hero-section-containing-brand-name-ikigai-and-tagline-build-the-flow-2-short-description-stating-it-is-a-modern-fitness-brand-focused-on-disciplined-movement-3-two-prominent-cta-buttons-labeled-explore-equipment-and-explore-apparel-that-navigate-to-the-product-catalog-page-with-the-relevant-category-pre-selected-4-featured-product-categories-equipment-apparel-5-brand-philosophy-section-covering-discipline-balance-and-intentional-movement-and-6-a-launching-soon-or-new-collection-section-with-placeholder-content",
+      "title": "Implement the Landing Page (Homepage) with: (1) hero section containing brand name “IKIGAI” and tagline “Build the Flow.”, (2) short description stating it is a modern fitness brand focused on disciplined movement, (3) two prominent CTA buttons labeled “Explore Equipment” and “Explore Apparel” that navigate to the Product Catalog page with the relevant category pre-selected, (4) featured product categories (Equipment & Apparel), (5) brand philosophy section covering discipline, balance, and intentional movement, and (6) a “Launching Soon” or “New Collection” section with placeholder content.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-product-catalog-page-that-displays-15-20-placeholder-products-in-a-clean-responsive-grid-and-organizes-them-into-the-categories-yoga-mats-resistance-bands-mobility-tools-training-apparel-tops-bottoms-each-product-card-must-include-product-image-product-name-short-description-placeholder-price-and-an-add-to-cart-button",
+      "title": "Implement a Product Catalog page that displays 15–20 placeholder products in a clean, responsive grid and organizes them into the categories: Yoga Mats, Resistance Bands, Mobility Tools, Training Apparel (tops, bottoms). Each product card must include: product image, product name, short description, placeholder price, and an “Add to Cart” button.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-product-detail-page-that-is-reachable-from-the-product-catalog-by-selecting-a-product-card-the-product-detail-page-must-show-large-product-image-product-description-material-usage-highlights-quantity-selector-and-an-add-to-cart-button-that-adds-the-selected-quantity-to-the-cart",
+      "title": "Implement a Product Detail page that is reachable from the Product Catalog by selecting a product card. The Product Detail page must show: large product image, product description, material/usage highlights, quantity selector, and an “Add to Cart” button that adds the selected quantity to the cart.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-cart-page-that-lists-added-products-and-supports-quantity-adjustment-per-line-item-show-subtotal-and-total-price-based-on-placeholder-product-prices-and-include-a-proceed-to-checkout-button-no-payment-processing-required",
+      "title": "Implement a Cart page that lists added products and supports quantity adjustment per line item. Show subtotal and total price (based on placeholder product prices) and include a “Proceed to Checkout” button (no payment processing required).",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-login-signup-page-with-simple-clean-forms-for-user-login-and-account-creation-using-english-labels-and-helper-text-the-forms-may-use-placeholder-behavior-no-external-auth-providers-but-must-include-basic-client-side-validation-and-polished-error-states-consistent-with-the-site-design",
+      "title": "Implement a Login / Signup page with simple, clean forms for user login and account creation using English labels and helper text. The forms may use placeholder behavior (no external auth providers), but must include basic client-side validation and polished error states consistent with the site design.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-global-navigation-suitable-for-a-small-brand-site-at-minimum-links-to-home-catalog-cart-and-login-signup-and-ensure-the-entire-website-is-mobile-friendly-with-responsive-layout-and-touch-friendly-controls",
+      "title": "Add global navigation suitable for a small brand site (at minimum links to Home, Catalog, Cart, and Login/Signup) and ensure the entire website is mobile-friendly with responsive layout and touch-friendly controls.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-use-placeholder-images-and-content-where-needed-ensuring-all-user-facing-text-is-in-english-and-the-brand-tone-remains-calm-confident-and-professional-not-aggressive-gym-style-not-spiritual-heavy-yoga-style",
+      "title": "Use placeholder images and content where needed, ensuring all user-facing text is in English and the brand tone remains calm, confident, and professional (not aggressive gym style; not spiritual-heavy yoga style).",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-required-generated-images-as-static-assets-under-frontend-public-assets-generated-and-use-them-as-product-category-placeholders-throughout-the-site-do-not-serve-images-through-the-backend",
+      "title": "Add the required generated images as static assets under frontend/public/assets/generated and use them as product/category placeholders throughout the site (do not serve images through the backend).",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-all-product-price-displays-across-the-site-to-use-indian-rupees-inr-formatting-instead-of-usd-including-product-cards-product-detail-pages-cart-line-items-and-cart-order-summary-totals",
+      "title": "Update all product price displays across the site to use Indian Rupees (INR) formatting (₹) instead of USD ($), including product cards, product detail pages, cart line items, and cart order summary totals.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-provided-support-contact-details-to-the-site-footer-in-a-clearly-labeled-support-or-contact-support-section-using-english-labels-and-including-clickable-phone-tel-and-email-mailto-links-zoheb-ansari-91-9324400398-ikigai076-gmail-com",
+      "title": "Add the provided support contact details to the site footer in a clearly labeled 'Support' or 'Contact Support' section, using English labels and including clickable phone (tel:) and email (mailto:) links: Zoheb Ansari, +91 9324400398, ikigai076@gmail.com.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-footer-social-media-instagram-link-to-point-to-the-provided-handle-ikigai-67-i-e-link-to-https-instagram-com-ikigai-67-and-ensure-the-ui-indicates-instagram-explicitly-icon-and-or-label",
+      "title": "Update the footer social media 'Instagram' link to point to the provided handle 'ikigai._.67' (i.e., link to https://instagram.com/ikigai._.67) and ensure the UI indicates Instagram explicitly (icon and/or label).",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-product-catalog-data-so-every-product-has-a-randomly-assigned-price-within-the-499-1499-range-inclusive-and-ensure-the-updated-prices-are-used-everywhere-that-references-product-price-catalog-cards-product-detail-page-cart-line-items-and-cart-totals",
+      "title": "Update the product catalog data so every product has a randomly assigned price within the ₹499–₹1499 range (inclusive), and ensure the updated prices are used everywhere that references `product.price` (catalog cards, product detail page, cart line items, and cart totals).",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-product-catalog-data-so-each-product-has-a-unique-image-no-repeated-image-paths-across-products-including-within-the-same-category-add-the-corresponding-image-files-as-static-assets-under-frontend-public-assets-generated-and-update-frontend-src-data-products-ts-to-reference-the-new-unique-image-paths",
+      "title": "Update the product catalog data so each product has a unique image (no repeated image paths across products, including within the same category). Add the corresponding image files as static assets under `frontend/public/assets/generated` and update `frontend/src/data/products.ts` to reference the new unique image paths.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-html-head-metadata-for-a-live-public-launch-add-a-concise-meta-description-open-graph-tags-title-description-type-url-and-twitter-card-tags-using-the-existing-ikigai-brand-copy-and-english-text",
+      "title": "Update the HTML head metadata for a live/public launch: add a concise meta description, Open Graph tags (title, description, type, url), and Twitter card tags using the existing IKIGAI brand copy and English text.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-user-friendly-not-found-404-page-and-route-so-unknown-urls-show-a-branded-error-state-with-a-clear-cta-back-to-home-and-a-secondary-cta-to-catalog",
+      "title": "Add a user-friendly Not Found (404) page and route so unknown URLs show a branded error state with a clear CTA back to Home and a secondary CTA to Catalog.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-perform-go-live-qa-cleanup-ensure-the-app-has-no-obvious-production-breaking-console-errors-on-initial-load-and-core-flows-home-catalog-product-detail-add-to-cart-cart-auth-page-work-end-to-end-with-the-current-placeholder-backend",
+      "title": "Perform go-live QA cleanup: ensure the app has no obvious production-breaking console errors on initial load and core flows (Home → Catalog → Product Detail → Add to Cart → Cart → Auth page) work end-to-end with the current placeholder backend.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-new-checkout-page-and-route-that-is-reachable-from-the-cart-page-s-proceed-to-checkout-cta",
+      "title": "Add a new Checkout page and route that is reachable from the Cart page’s “Proceed to Checkout” CTA.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-payment-method-selection-step-on-the-checkout-page-with-a-clean-brand-consistent-ui-and-english-labels-no-real-payment-processing-required",
+      "title": "Implement a payment method selection step on the Checkout page with a clean, brand-consistent UI and English labels (no real payment processing required).",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-site-page-background-images-that-enhance-the-minimal-premium-ikigai-aesthetic-while-preserving-readability-using-static-assets-under-frontend-public-assets-generated-no-backend-image-serving",
+      "title": "Add site/page background images that enhance the minimal, premium IKIGAI aesthetic while preserving readability, using static assets under `frontend/public/assets/generated` (no backend image serving).",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-full-page-animated-background-on-all-routes-where-yoga-pose-images-morph-smoothly-between-different-poses-while-preserving-content-readability-and-the-existing-minimal-premium-ikigai-aesthetic",
+      "title": "Add a full-page animated background on all routes where yoga pose images morph smoothly between different poses, while preserving content readability and the existing minimal, premium IKIGAI aesthetic.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-morphing-background-as-a-reusable-layout-level-layer-integrated-with-the-existing-background-layering-system-site-wide-background-grain-overlay-without-breaking-the-current-checkout-specific-background-styling",
+      "title": "Implement the morphing background as a reusable layout-level layer integrated with the existing background layering system (site-wide background + grain overlay), without breaking the current checkout-specific background styling.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-respect-user-accessibility-preferences-by-reducing-or-disabling-the-morph-animation-when-the-user-has-enabled-reduced-motion-while-still-showing-a-static-yoga-background-image",
+      "title": "Respect user accessibility preferences by reducing or disabling the morph animation when the user has enabled reduced motion, while still showing a static yoga background image.",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-new-yoga-pose-background-image-assets-under-frontend-public-assets-generated-and-update-the-app-to-reference-them-do-not-serve-images-through-the-backend",
+      "title": "Add the new yoga pose background image assets under `frontend/public/assets/generated` and update the app to reference them (do not serve images through the backend).",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-restore-the-full-page-yoga-pose-background-imagery-and-morphing-animation-so-it-appears-on-all-routes-home-catalog-product-detail-cart-checkout-auth-and-404-as-it-did-prior-to-the-last-deployment",
+      "title": "Restore the full-page yoga pose background imagery and morphing animation so it appears on all routes (Home, Catalog, Product Detail, Cart, Checkout, Auth, and 404) as it did prior to the last deployment.",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-regression-root-cause-by-verifying-and-correcting-the-background-layering-implementation-layout-composition-css-stacking-context-z-index-and-asset-urls-so-the-yoga-background-is-not-hidden-by-other-fixed-layers-site-background-grain-overlay-checkout-specific-background-after-deployment",
+      "title": "Fix the regression root cause by verifying and correcting the background layering implementation (layout composition, CSS stacking context/z-index, and asset URLs) so the yoga background is not hidden by other fixed layers (site background, grain overlay, checkout-specific background) after deployment.",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-yoga-pose-image-assets-and-noise-map-referenced-by-the-morphing-background-exist-and-are-correctly-served-from-frontend-public-assets-generated-and-prevent-silent-failures-by-validating-asset-availability-during-development-qa",
+      "title": "Ensure the yoga pose image assets and noise map referenced by the morphing background exist and are correctly served from `frontend/public/assets/generated`, and prevent silent failures by validating asset availability during development/QA.",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-preserve-accessibility-behavior-when-the-user-has-enabled-prefers-reduced-motion-disable-the-morph-animation-but-still-display-a-static-yoga-background-image-across-all-routes",
+      "title": "Preserve accessibility behavior: when the user has enabled `prefers-reduced-motion`, disable the morph animation but still display a static yoga background image across all routes.",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-quick-regression-qa-pass-focused-on-the-background-verify-no-production-breaking-console-errors-on-initial-load-and-confirm-the-yoga-background-and-animation-appear-consistently-across-the-core-navigation-flows",
+      "title": "Add a quick regression QA pass focused on the background: verify no production-breaking console errors on initial load and confirm the yoga background and animation appear consistently across the core navigation flows.",
+      "reqIds": [
+        "REQ-29"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create Landing Page (Homepage) with hero (IKIGAI + tagline), short description, CTAs (Explore Equipment/Apparel), featured categories, brand philosophy, and Launching Soon/New Collection section",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Create Product Catalog page with 15–20 placeholder products in a clean grid, filter/section by categories (Yoga Mats, Resistance Bands, Mobility Tools, Training Apparel) and product cards (image, name, description, price placeholder, Add to Cart)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Create Product Detail page with large image, description, material/usage highlights, quantity selector, and Add to Cart",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Create Cart page with line items, quantity adjustments, subtotal/total, and Proceed to Checkout CTA",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Create Login / Signup page with clean, minimal forms for user login and account creation",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Define site-wide visual style (minimal premium, off-white background, dark text, muted accent palette olive/stone/beige, spacious layout, clean typography) and brand tone guidelines",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Ensure mobile-friendly responsive layout across all pages using placeholder images/content where needed",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Display all product prices in Indian Rupees (INR/₹) across catalog, product detail, and cart totals",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Add Support/Contact information and social media handle (Instagram) to the site (e.g., footer or dedicated section): Zoheb Ansari, +91 9324400398, ikigai076@gmail.com, Instagram: ikigai._.67",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Update placeholder product data so each product has a unique image (no repeated images within a category) and increase prices by assigning a random INR price per product within the ₹499–₹1499 range across all categories",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Add payment methods / checkout payment step (enable selecting a payment method; implement payment UI flow without necessarily integrating real payment processing unless specified)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Add background images to site/pages (apply calm-performance background imagery while maintaining minimal premium aesthetic and readability)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Apply full-page backgrounds on all pages using yoga pose images that morph smoothly between different poses (morph animation) while preserving readability and the minimal premium IKIGAI aesthetic",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "IKIGAI",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

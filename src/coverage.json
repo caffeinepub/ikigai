@@ -1,0 +1,98 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-15T18:11:09.851Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 5,
+    "implemented": 5,
+    "items": [
+      {
+        "id": "REQ-25",
+        "summary": "Restore the full-page yoga pose background imagery and morphing animation so it appears on all routes (Home, Catalog, Product Detail, Cart, Checkout, Auth, and 404) as it did prior to the last deployment.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/layout/YogaMorphBackground.tsx",
+          "frontend/src/components/layout/SiteLayout.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/layout/YogaMorphBackground.tsx",
+          "frontend/src/components/layout/SiteLayout.tsx"
+        ]
+      },
+      {
+        "id": "REQ-26",
+        "summary": "Fix the regression root cause by verifying and correcting the background layering implementation (layout composition, CSS stacking context/z-index, and asset URLs) so the yoga background is not hidden by other fixed layers (site background, grain overlay, checkout-specific background) after deployment.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/src/pages/CheckoutPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/src/pages/CheckoutPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-27",
+        "summary": "Ensure the yoga pose image assets and noise map referenced by the morphing background exist and are correctly served from `frontend/public/assets/generated`, and prevent silent failures by validating asset availability during development/QA.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/layout/YogaMorphBackground.tsx",
+          "frontend/src/hooks/useYogaBackgroundDiagnostics.ts",
+          "frontend/src/components/layout/SiteLayout.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/layout/YogaMorphBackground.tsx",
+          "frontend/src/hooks/useYogaBackgroundDiagnostics.ts",
+          "frontend/src/components/layout/SiteLayout.tsx"
+        ]
+      },
+      {
+        "id": "REQ-28",
+        "summary": "Preserve accessibility behavior: when the user has enabled `prefers-reduced-motion`, disable the morph animation but still display a static yoga background image across all routes.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/layout/YogaMorphBackground.tsx",
+          "frontend/src/index.css"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/layout/YogaMorphBackground.tsx",
+          "frontend/src/index.css"
+        ]
+      },
+      {
+        "id": "REQ-29",
+        "summary": "Add a quick regression QA pass focused on the background: verify no production-breaking console errors on initial load and confirm the yoga background and animation appear consistently across the core navigation flows.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/qa/background-regression-checklist.md",
+          "frontend/src/hooks/useYogaBackgroundDiagnostics.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/qa/background-regression-checklist.md",
+          "frontend/src/hooks/useYogaBackgroundDiagnostics.ts"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/components/layout/SiteLayout.tsx",
+    "frontend/src/components/layout/YogaMorphBackground.tsx",
+    "frontend/src/hooks/useYogaBackgroundDiagnostics.ts",
+    "frontend/src/index.css",
+    "frontend/src/pages/CheckoutPage.tsx",
+    "frontend/src/qa/background-regression-checklist.md",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}
